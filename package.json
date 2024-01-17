@@ -1,0 +1,31 @@
+{
+  "name": "@smocai/smoc-widget",
+  "version": "0.0.1",
+  "description": "Add a Smoc Bot to your web page",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "esbuild src/index.ts --bundle --sourcemap --outfile=public/index.js --watch --serve --servedir=public",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMOC-AI/smoc-widget.git"
+  },
+  "keywords": [
+    "smoc",
+    "chat",
+    "bot"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SMOC-AI/smoc-widget/issues"
+  },
+  "homepage": "https://github.com/SMOC-AI/smoc-widget#readme",
+  "devDependencies": {
+    "esbuild": "0.19.11"
+  }
+}
