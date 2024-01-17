@@ -2,11 +2,11 @@
 
 Smoc Widget is a JavaScript library for embedding the Smoc bot on a web page:
 
-![button](./docs/button.jpg)
+![button](./docs/button.jpeg)
 
 Clicking the button will open the bot:
 
-![iframe](./docs/iframe.jpg)
+![iframe](./docs/iframe.jpeg)
 
 ## Installation
 
