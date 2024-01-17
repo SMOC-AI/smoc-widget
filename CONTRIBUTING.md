@@ -16,9 +16,9 @@ After cloning the repo, install dependencies:
 
 Start a local server:
 
-    npm start
+    npm run dev
 
-You can now point your browser to http://localhost:3000 where you will see a simple web page
+You can now point your browser to http://127.0.0.1:8000/ where you will see a simple web page
 and the widget in the bottom right corner.
 
 ## Building
