@@ -4,7 +4,7 @@
     right: 64px;
     width: 50px; /* Or desired size */
     height: 50px; /* Or desired size */
-    background-color: #fff; /* This will be dynamically set */
+    background-color: #HEX_COLOR; /* This will be dynamically set */
     /* Additional styling */
   }
   

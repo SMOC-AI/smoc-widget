@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html>
+    <script>
+        (function(d, w, c) {
+            w.SmocConversationTemplateId = 'YOUR-CONVERSATION-TEMPLATE-ID';
+            w.Color = "#ffeeed"
+            w.Shape = "round" // or "square"
+            w.Position = "bottom-left" // or "bottom-right"
+            w[c] = w[c] || function() {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+            var s = d.createElement('script');
+            s.async = true;
+            s.src = '/index.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window, 'SmocWidget');
+    </script>
 <head>
+    <link rel="stylesheet" href="/src/style.css">
     <title>We Love Smoc</title>
     <style>
         /* Simple Brutalist design */
@@ -23,7 +39,7 @@
             margin: 0;
         }
     </style>
-    <script src="/index.js"></script>
+    
 </head>
 <body>
     <h1>Velkommen</h1>
