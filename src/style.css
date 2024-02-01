@@ -1,0 +1,10 @@
+#smoc-chat-icon {
+    position: fixed;
+    bottom: 64px;
+    right: 64px;
+    width: 50px; /* Or desired size */
+    height: 50px; /* Or desired size */
+    background-color: #fff; /* This will be dynamically set */
+    /* Additional styling */
+  }
+  
