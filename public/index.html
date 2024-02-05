@@ -23,7 +23,20 @@
             margin: 0;
         }
     </style>
-    <script src="/index.js"></script>
+    <script>
+        (function(d, w) {
+            w.SmocConfig = {
+                conversationTemplate: 'YOUR-CONVERSATION-TEMPLATE-ID',
+                color: '#ffeeed',
+                shape: 'round', // or 'square'
+                position: 'bottom-left' // or 'bottom-right'
+            }
+            var s = d.createElement('script');
+            s.async = true;
+            s.src = '/index.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window);
+    </script>
 </head>
 <body>
     <h1>Velkommen</h1>

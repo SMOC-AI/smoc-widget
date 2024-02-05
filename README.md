@@ -16,19 +16,19 @@ We recommend you add this right before the </head> tag.
 ```html
 <!-- Smoc Bot -->
 <script>
-    (function(d, w, c) {
-        w.SmocConversationTemplateId = 'YOUR-CONVERSATION-TEMPLATE-ID';
-        w.Color = "#ffeeed"
-        w.Shape = "round" // or "square"
-        w.Position = "bottom-left" // or "bottom-right"
-        w[c] = w[c] || function() {
-            (w[c].q = w[c].q || []).push(arguments);
-        };
+    (function(d, w) {
+        w.SmocConfig = {
+            conversationTemplate: 'YOUR-CONVERSATION-TEMPLATE-ID',
+            color: '#ffeeed',
+            shape: 'round', // or 'square'
+            position: 'bottom-left' // or 'bottom-right'
+        }
         var s = d.createElement('script');
         s.async = true;
-        s.src = 'https://unpkg.com/smocai/smoc-widget@1.0.0';
+        // s.src = 'https://unpkg.com/smocai/smoc-widget@1.0.0';
+        s.src = '/index.js';
         if (d.head) d.head.appendChild(s);
-    })(document, window, 'SmocWidget');
+    })(document, window);
 </script>
 ```
 
