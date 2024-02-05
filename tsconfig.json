@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                                  
+    "module": "commonjs",                                
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,            
+    "strict": true,                                      
+    "skipLibCheck": true,
+    "resolveJsonModule": true,                           /* If you need to import JSON files */
+    "outDir": "./dist",                                  /* Output directory for compiled files */
+    "rootDir": "./src",                                  /* Root directory of your source files */
+    "moduleResolution": "node",                          /* Module resolution strategy */
+    "sourceMap": true,                                   /* Generate source map files for debugging */
+    "removeComments": false                              /* Set to true if you want to remove comments from output */
+  },
+  "include": ["src/**/*"],                               /* Include all files in the src directory */
+  "exclude": ["node_modules", "dist"]                    /* Exclude node_modules and dist directories from the compilation process */
+}
