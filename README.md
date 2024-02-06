@@ -42,3 +42,4 @@ You can customize various visual attributes of the widget:
 * Color
 * Shape (round or square)
 * Position (bottom right, top right etc)
+
