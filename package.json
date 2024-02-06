@@ -8,7 +8,10 @@
   },
   "scripts": {
     "dev": "esbuild src/index.ts --bundle --sourcemap --outfile=public/index.js --watch --serve --servedir=public",
-    "test": "vitest"
+    "prepare": "husky install",
+    "format": "prettier './**/*.{ts,tsx,json}' --write",
+    "lint": "eslint './**/*.{ts,tsx}' --fix",
+    "compile": "tsc --build"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,52 @@
   },
   "homepage": "https://github.com/SMOC-AI/smoc-widget#readme",
   "devDependencies": {
-    "esbuild": "0.19.11"
+    "esbuild": "0.19.11",
+    "@typescript-eslint/eslint-plugin": "6.19.1",
+    "eslint": "8.56.0",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "husky": "8.0.3",
+    "prettier": "3.2.4"
+  },
+  "prettier": {
+    "semi": true,
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --quiet --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "@typescript-eslint/consistent-type-exports": "error",
+      "@typescript-eslint/consistent-type-imports": "error"
+    },
+    "plugins": [
+      "simple-import-sort"
+    ],
+    "env": {
+      "node": true
+    }
   }
 }

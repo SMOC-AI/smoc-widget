@@ -1,5 +1,7 @@
-import { SmocConfig } from "./SmocConfig";
+import type { SmocConfig } from './SmocConfig';
 
 declare global {
-  interface Window { SmocConfig: SmocConfig; }
+  interface Window {
+    SmocConfig: SmocConfig;
+  }
 }
