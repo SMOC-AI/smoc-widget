@@ -1,3 +1,5 @@
+[![Build](https://github.com/SMOC-AI/smoc-widget/actions/workflows/build.yaml/badge.svg)](https://github.com/SMOC-AI/smoc-widget/actions/workflows/build.yaml)
+
 # Smoc Widget
 
 Smoc Widget is a JavaScript library for embedding the Smoc bot on a web page:
