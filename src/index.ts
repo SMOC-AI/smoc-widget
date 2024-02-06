@@ -1,13 +1,10 @@
+const container = document.createElement("div");
+container.style.position = "fixed";
 
+// Place the widget in the bottom right corner
+container.style.bottom = "30px";
+container.style.right = "30px";
 
-function createChatIcon(hexColor: string): HTMLElement {
-    const iconElement = document.createElement('div');
-    iconElement.id = 'smoc-chat-icon';
-    // Additional code to set up the icon, including setting the color
-    return iconElement;
-  }
-  
-  // Add the icon to the document body
-  document.body.appendChild(createChatIcon('#HEX_COLOR'));
-
-console.log(window.SmocConfig);
+// TODO: Rather than just displaying the config, draw an icon in the bottom right corner
+container.innerHTML = JSON.stringify(window.SmocConfig);
+document.body.appendChild(container);
