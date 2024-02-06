@@ -27,8 +27,7 @@ We recommend you add this right before the </head> tag.
         }
         var s = d.createElement('script');
         s.async = true;
-        // s.src = 'https://unpkg.com/smocai/smoc-widget@1.0.0';
-        s.src = '/index.js';
+        s.src = 'https://unpkg.com/smocai/smoc-widget@1.0.0';
         if (d.head) d.head.appendChild(s);
     })(document, window);
 </script>

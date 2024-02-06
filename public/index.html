@@ -23,6 +23,10 @@
             margin: 0;
         }
     </style>
+    <!-- 
+        This script tag installs the Smoc widget on this web page.
+        IMPORTANT: Keep this in sync with the example in the README.md
+    -->
     <script>
         (function(d, w) {
             w.SmocConfig = {
@@ -33,6 +37,10 @@
             }
             var s = d.createElement('script');
             s.async = true;
+            // In development, we use the local version of the widget.
+            // The index.js file is served by webpack-dev-server (npm run dev),
+            // which transpiles the index.ts file to index.js in-memory 
+            // (it's not written to disk).
             s.src = '/index.js';
             if (d.head) d.head.appendChild(s);
         })(document, window);

@@ -1,3 +1,4 @@
+// Create the outer container for the widget
 const container = document.createElement('div');
 container.style.position = 'fixed';
 
@@ -7,4 +8,6 @@ container.style.right = '30px';
 
 // TODO: Rather than just displaying the config, draw an icon in the bottom right corner
 container.innerHTML = JSON.stringify(window.SmocConfig);
+
+// Add the container as the last child of the <body> element.
 document.body.appendChild(container);
