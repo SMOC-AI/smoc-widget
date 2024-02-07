@@ -11,3 +11,6 @@ container.innerHTML = JSON.stringify(window.SmocConfig);
 
 // Add the container as the last child of the <body> element.
 document.body.appendChild(container);
+
+const foo = 3;
+console.log(foo);
