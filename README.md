@@ -13,7 +13,7 @@ Clicking the button will open the bot:
 ## Installation
 
 Paste the `<script>` tag below into the pages where you want to enable the Smoc bot. 
-We recommend you add this right before the </head> tag.
+We recommend you add this right before the closing `</head>` tag.
 
 ```html
 <!-- Smoc Bot -->
