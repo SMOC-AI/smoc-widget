@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/SMOC-AI/smoc-widget#readme",
   "devDependencies": {
-    "esbuild": "0.19.11",
     "@typescript-eslint/eslint-plugin": "6.19.1",
+    "esbuild": "0.19.11",
     "eslint": "8.56.0",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "husky": "8.0.3",
@@ -76,5 +76,8 @@
     "env": {
       "node": true
     }
+  },
+  "dependencies": {
+    "typescript": "^5.3.3"
   }
 }
