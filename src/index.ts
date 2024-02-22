@@ -7,7 +7,22 @@ const container = document.createElement('div');
 container.style.position = 'fixed';
 container.style.bottom = '64px';
 container.style.right = '64px';
-container.style.zIndex = '1000'; // Ensure the icon is above other elements
+container.style.zIndex = '1000';
+
+const iframe = document.createElement('iframe');
+iframe.style.width = '0';
+iframe.style.height = '0';
+iframe.style.border = 'none';
+iframe.style.position = 'fixed';
+iframe.style.bottom = '64px';
+iframe.style.right = '64px';
+iframe.style.backgroundColor = 'white';
+iframe.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+iframe.style.transition = '0.3s ease all';
+iframe.style.zIndex = '999';
+
+// Sets the source of the iframe to the desired content
+iframe.src = 'https://example.com';
 
 const icon = document.createElement('div');
 
@@ -18,10 +33,19 @@ icon.style.height = 'auto';
 icon.style.cursor = 'pointer';
 
 icon.addEventListener('click', () => {
-  alert('Icon clicked!');
+  const isOpen = iframe.style.width !== '0px';
+  if (isOpen) {
+    iframe.style.width = '0px';
+    iframe.style.height = '0px';
+  } else {
+    iframe.style.width = '300px';
+    iframe.style.height = '400px';
+  }
+  console.log('Iframe toggled:', !isOpen);
 });
 
 container.appendChild(icon);
+document.body.appendChild(iframe);
 
 document.body.appendChild(container);
 
@@ -42,10 +66,6 @@ function changeIconColor(): void {
 }
 
 changeIconColor();
-
-icon.addEventListener('click', () => {
-  alert('Icon clicked!');
-});
 
 container.appendChild(icon);
 
