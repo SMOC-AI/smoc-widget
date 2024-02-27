@@ -18,30 +18,74 @@ iframe.style.bottom = '64px';
 iframe.style.right = '64px';
 iframe.style.backgroundColor = 'white';
 iframe.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-iframe.style.transition = '0.3s ease all';
+iframe.style.transition = '0.1s ease all';
 iframe.style.zIndex = '999';
-
-// Sets the source of the iframe to the desired content
 iframe.src = 'https://example.com';
 
 const icon = document.createElement('div');
 
-icon.innerHTML = svgContent;
+const closeButton = document.createElement('button');
+closeButton.innerHTML = `<?xml version="1.0" ?><svg height="30px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg>`;
+closeButton.style.cssText = `
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1001; 
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  display: none; 
+`;
 
+icon.innerHTML = svgContent;
 icon.style.width = '40px';
 icon.style.height = 'auto';
 icon.style.cursor = 'pointer';
 
 icon.addEventListener('click', () => {
   const isOpen = iframe.style.width !== '0px';
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
   if (isOpen) {
     iframe.style.width = '0px';
     iframe.style.height = '0px';
+    icon.style.display = 'block';
+    closeButton.style.display = 'none';
   } else {
-    iframe.style.width = '300px';
-    iframe.style.height = '400px';
+    if (vw < 600) {
+      // Smaller devices
+      iframe.style.width = '90vw';
+      iframe.style.height = '50vh';
+    } else if (vw >= 601 && vw <= 1024) {
+      // Tablets
+      iframe.style.width = '50vw';
+      iframe.style.height = '60vh';
+    } else {
+      // Desktops
+      iframe.style.width = '300px';
+      iframe.style.height = '400px';
+    }
+    icon.style.display = 'none';
+    closeButton.style.display = 'block';
+
+    const iframeTop = window.innerHeight - parseInt(iframe.style.height, 11);
+    closeButton.style.top = `${iframeTop}px`;
+    closeButton.style.right = '16px';
   }
-  console.log('Iframe toggled:', !isOpen);
+
+  if (!container.contains(closeButton)) {
+    container.appendChild(closeButton);
+  }
+});
+
+closeButton.addEventListener('click', (e) => {
+  e.stopPropagation();
+  iframe.style.width = '0';
+  iframe.style.height = '0';
+  icon.style.display = 'block';
+  closeButton.style.display = 'none';
+  container.removeChild(closeButton);
 });
 
 container.appendChild(icon);
@@ -69,4 +113,6 @@ changeIconColor();
 
 container.appendChild(icon);
 
-document.body.appendChild(container);
+document.body.appendChild(iframe);
+
+container.appendChild(closeButton);
