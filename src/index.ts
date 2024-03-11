@@ -7,29 +7,98 @@ const container = document.createElement('div');
 container.style.position = 'fixed';
 container.style.bottom = '64px';
 container.style.right = '64px';
-container.style.zIndex = '1000'; // Ensure the icon is above other elements
+container.style.zIndex = '1000';
+container.style.display = 'flex';
+container.style.flexDirection = 'column';
+container.style.alignItems = 'flex-end';
+
+const borderWrapper = document.createElement('div');
+borderWrapper.style.position = 'relative';
+borderWrapper.style.borderTop = 'none';
+borderWrapper.style.width = '100%';
+
+const iframe = document.createElement('iframe');
+iframe.style.width = '0';
+iframe.style.height = '0';
+iframe.style.border = 'none';
+iframe.style.backgroundColor = 'white';
+iframe.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+iframe.src = 'https://example.com';
 
 const icon = document.createElement('div');
 
-icon.innerHTML = svgContent;
+const closeButton = document.createElement('button');
+closeButton.innerHTML = `<?xml version="1.0" ?><svg height="30px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg>`; // Your closeButton SVG
+closeButton.style.cssText = `
+  position: absolute;
+  top: -30px;
+  right: 10px;
+  z-index: 1001;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  display: none; 
+`;
 
+icon.innerHTML = svgContent;
 icon.style.width = '40px';
 icon.style.height = 'auto';
 icon.style.cursor = 'pointer';
 
 icon.addEventListener('click', () => {
-  alert('Icon clicked!');
+  const isOpen = iframe.style.width !== '0px';
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+  if (isOpen) {
+    iframe.style.width = '0px';
+    iframe.style.height = '0px';
+    closeButton.style.display = 'none';
+    icon.style.display = 'block';
+    borderWrapper.style.borderTop = 'none';
+  } else {
+    if (vw < 600) {
+      iframe.style.width = '90vw';
+      iframe.style.height = '80vh';
+      closeButton.style.top = '-30px';
+      closeButton.style.right = '10px';
+    } else if (vw >= 601 && vw <= 1024) {
+      iframe.style.width = '90vw';
+      iframe.style.height = '80vh';
+      closeButton.style.top = '-30px';
+      closeButton.style.right = '10px';
+    } else {
+      iframe.style.width = '300px';
+      iframe.style.height = '400px';
+      closeButton.style.top = '-30px';
+      closeButton.style.right = '10px';
+    }
+    closeButton.style.display = 'block';
+    icon.style.display = 'none';
+    borderWrapper.style.borderTop = '35px solid grey';
+  }
 });
 
+closeButton.addEventListener('click', (e) => {
+  e.stopPropagation();
+  iframe.style.width = '0';
+  iframe.style.height = '0';
+  closeButton.style.display = 'none';
+  icon.style.display = 'block';
+  borderWrapper.style.borderTop = 'none';
+});
+
+borderWrapper.appendChild(iframe);
+borderWrapper.appendChild(closeButton);
+
+container.appendChild(borderWrapper);
 container.appendChild(icon);
 
 document.body.appendChild(container);
 
 function setSVGColor(svgElement: SVGElement, color: string): void {
   svgElement.querySelectorAll('path, circle, rect, polygon').forEach((el: Element) => {
-    if (el instanceof SVGGraphicsElement) {
-      el.style.fill = color;
-    }
+    el.setAttribute('fill', color);
   });
 }
 
@@ -42,11 +111,3 @@ function changeIconColor(): void {
 }
 
 changeIconColor();
-
-icon.addEventListener('click', () => {
-  alert('Icon clicked!');
-});
-
-container.appendChild(icon);
-
-document.body.appendChild(container);
