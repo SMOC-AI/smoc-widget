@@ -26,9 +26,21 @@ iframe.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
 iframe.src = 'https://example.com';
 
 const icon = document.createElement('div');
+const styleSheet = document.createElement('style');
+styleSheet.innerText = `
+@keyframes enlargenAnimation {
+  from {
+    transform: scale(0.4);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+`;
+document.head.appendChild(styleSheet);
 
 const closeButton = document.createElement('button');
-closeButton.innerHTML = `<?xml version="1.0" ?><svg height="30px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg>`; // Your closeButton SVG
+closeButton.innerHTML = `<?xml version="1.0" ?><svg height="25px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="25px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg>`; // Your closeButton SVG
 closeButton.style.cssText = `
   position: absolute;
   top: -30px;
@@ -42,9 +54,23 @@ closeButton.style.cssText = `
 `;
 
 icon.innerHTML = svgContent;
-icon.style.width = '40px';
-icon.style.height = 'auto';
+icon.style.width = '50px';
+icon.style.height = '50px';
 icon.style.cursor = 'pointer';
+icon.style.backgroundColor = '#fff';
+icon.style.display = 'inline-block';
+icon.style.padding = '10px';
+icon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+icon.style.alignItems = 'center';
+icon.style.justifyContent = 'center';
+icon.style.transition = 'transform 0.3s ease';
+
+icon.addEventListener('mouseenter', () => {
+  icon.style.transform = 'scale(1.1)';
+});
+icon.addEventListener('mouseleave', () => {
+  icon.style.transform = 'scale(1)';
+});
 
 icon.addEventListener('click', () => {
   const isOpen = iframe.style.width !== '0px';
@@ -86,6 +112,11 @@ closeButton.addEventListener('click', (e) => {
   closeButton.style.display = 'none';
   icon.style.display = 'block';
   borderWrapper.style.borderTop = 'none';
+  icon.style.animation = 'enlargenAnimation 0.5s ease forwards';
+});
+
+icon.addEventListener('animationend', () => {
+  icon.style.animation = '';
 });
 
 borderWrapper.appendChild(iframe);
@@ -101,13 +132,25 @@ function setSVGColor(svgElement: SVGElement, color: string): void {
     el.setAttribute('fill', color);
   });
 }
+function setWidgetShape(shape: string) {
+  if (shape === 'round') {
+    icon.style.borderRadius = '50%'; // Makes the icon container round
+    icon.style.width = '50px'; // Ensure width and height are equal for a perfect circle
+    icon.style.height = '50px';
+  } else if (shape === 'square') {
+    icon.style.borderRadius = '0'; // Makes the icon container square
+    // Optional: Adjust width and height as needed for a square
+  }
+}
 
-function changeIconColor(): void {
+function changeIconShapeAndColor(): void {
   const color = window.SmocConfig?.color || '#ffeeed';
+  const shape = window.SmocConfig?.shape || 'square';
   const svgElement: SVGSVGElement | null = icon.querySelector('svg');
   if (svgElement) {
     setSVGColor(svgElement, color);
   }
+  setWidgetShape(shape);
 }
 
-changeIconColor();
+changeIconShapeAndColor();
