@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "description": "Add a Smoc Bot to your web page",
   "main": "dist/index.js",
+  "exports": "./dist/index.js",
+
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "dev": "esbuild src/index.ts --bundle --sourcemap --outfile=public/index.js --watch --serve --servedir=public",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js",
+    "prepublishOnly": "npm run build",
     "prepare": "husky install",
     "format": "prettier './**/*.{ts,tsx,json}' --write",
     "lint": "eslint './**/*.{ts,tsx}' --fix",
