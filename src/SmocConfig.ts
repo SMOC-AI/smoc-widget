@@ -1,5 +1,5 @@
 export type SmocConfig = {
-  conversationTemplate: string;
+  url: string;
   color: string;
   shape: string;
   position: string;
