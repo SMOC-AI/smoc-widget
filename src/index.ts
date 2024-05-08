@@ -23,7 +23,7 @@ iframe.style.height = '0';
 iframe.style.border = 'none';
 iframe.style.backgroundColor = 'white';
 iframe.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-iframe.src = 'https://example.com';
+iframe.src = window.SmocConfig?.url;
 
 const icon = document.createElement('div');
 const styleSheet = document.createElement('style');
@@ -154,3 +154,27 @@ function changeIconShapeAndColor(): void {
 }
 
 changeIconShapeAndColor();
+
+function applyPosition(): void {
+  const position = window.SmocConfig?.position || 'bottom-right';
+
+  switch (position) {
+    case 'bottom-left':
+      container.style.left = '64px';
+      container.style.right = 'auto';
+      break;
+    case 'bottom-right':
+      container.style.right = '64px';
+      container.style.left = 'auto';
+      break;
+    default:
+      container.style.right = '64px';
+      container.style.left = 'auto';
+      break;
+  }
+}
+
+applyPosition();
+
+document.body.appendChild(container);
+applyPosition();
