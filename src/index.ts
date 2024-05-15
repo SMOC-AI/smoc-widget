@@ -83,6 +83,7 @@ icon.addEventListener('click', () => {
     icon.style.display = 'block';
     borderWrapper.style.borderTop = 'none';
   } else {
+    const color = window.SmocConfig?.color || '#ffeeed';
     if (vw < 600) {
       iframe.style.width = '90vw';
       iframe.style.height = '80vh';
@@ -94,14 +95,14 @@ icon.addEventListener('click', () => {
       closeButton.style.top = '-30px';
       closeButton.style.right = '10px';
     } else {
-      iframe.style.width = '300px';
-      iframe.style.height = '400px';
+      iframe.style.width = '450px';
+      iframe.style.height = '500px';
       closeButton.style.top = '-30px';
       closeButton.style.right = '10px';
     }
     closeButton.style.display = 'block';
     icon.style.display = 'none';
-    borderWrapper.style.borderTop = '35px solid grey';
+    borderWrapper.style.borderTop = `35px solid ${color}`;
   }
 });
 
@@ -155,9 +156,8 @@ function changeIconShapeAndColor(): void {
 
 changeIconShapeAndColor();
 
-function applyPosition(): void {
+function applyPosition() {
   const position = window.SmocConfig?.position || 'bottom-right';
-
   switch (position) {
     case 'bottom-left':
       container.style.left = '64px';
@@ -173,8 +173,6 @@ function applyPosition(): void {
       break;
   }
 }
-
-applyPosition();
 
 document.body.appendChild(container);
 applyPosition();
