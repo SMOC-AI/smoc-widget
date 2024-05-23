@@ -20,14 +20,15 @@ We recommend you add this right before the closing `</head>` tag.
 <script>
     (function(d, w) {
         w.SmocConfig = {
-            conversationTemplate: 'YOUR-CONVERSATION-TEMPLATE-ID',
-            color: '#ffeeed',
+            // Change this to your Smoc bot
+            url: 'https://go.smoc.ai/smocdemo/operator_390_channel_rx0k2rv0/operator_390_channel_rx0k2rv0_bot/new?refresh=true&iframe_mode=true',
+            color: '#9f51bc',
             shape: 'round', // or 'square'
-            position: 'bottom-left' // or 'bottom-right'
+            position: 'bottom-right' // or 'bottom-left'
         }
         var s = d.createElement('script');
         s.async = true;
-        s.src = 'https://unpkg.com/smocai/smoc-widget@1.0.0';
+        s.src = 'https://unpkg.com/@smocai/smoc-widget@latest';
         if (d.head) d.head.appendChild(s);
     })(document, window);
 </script>
