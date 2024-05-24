@@ -3,4 +3,6 @@ export type SmocConfig = {
   color: string;
   shape: string;
   position: string;
+  borderRadius: string;
+  closeButtonColor: string;
 };

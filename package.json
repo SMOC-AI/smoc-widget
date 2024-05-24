@@ -4,7 +4,6 @@
   "description": "Add a Smoc Bot to your web page",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
-
   "directories": {
     "doc": "docs"
   },
