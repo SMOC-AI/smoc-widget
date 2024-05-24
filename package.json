@@ -1,6 +1,6 @@
 {
   "name": "@smocai/smoc-widget",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Add a Smoc Bot to your web page",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
