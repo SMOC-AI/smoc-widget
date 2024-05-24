@@ -102,11 +102,11 @@ icon.addEventListener('click', () => {
       iframe.style.height = '80vh';
       closeButton.style.top = '-30px';
       closeButton.style.right = '10px';
-    } else if (vw >= 601 && vw <= 1024) {
-      iframe.style.width = '90vw';
-      iframe.style.height = '80vh';
-      closeButton.style.top = '-30px';
-      closeButton.style.right = '10px';
+      // } else if (vw >= 601 && vw <= 1024) {
+      //   iframe.style.width = '90vw';
+      //   iframe.style.height = '80vh';
+      //   closeButton.style.top = '-30px';
+      //   closeButton.style.right = '10px';
     } else {
       iframe.style.width = '450px';
       iframe.style.height = '500px';
@@ -173,15 +173,17 @@ function applyPosition() {
   const position = window.SmocConfig?.position || 'bottom-right';
   switch (position) {
     case 'bottom-left':
-      container.style.left = '64px';
+      container.style.bottom = '16px';
+      container.style.left = '16px';
       container.style.right = 'auto';
       break;
     case 'bottom-right':
-      container.style.right = '64px';
+      container.style.bottom = '16px';
+      container.style.right = '16px';
       container.style.left = 'auto';
       break;
     default:
-      container.style.right = '64px';
+      container.style.right = '16px';
       container.style.left = 'auto';
       break;
   }
