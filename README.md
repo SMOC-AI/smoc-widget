@@ -24,7 +24,7 @@ We recommend you add this right before the closing `</head>` tag.
             url: 'https://go.smoc.ai/smocdemo/operator_390_channel_rx0k2rv0/operator_390_channel_rx0k2rv0_bot/new?refresh=true&iframe_mode=true',
             color: '#9f51bc',
             shape: 'round', // or 'square'
-            position: 'bottom-right' // or 'bottom-left'
+            position: 'bottom-right', // or 'bottom-left'
             borderRadius: '10px',
             closeButtonColor: '#fff',
         }
@@ -35,8 +35,6 @@ We recommend you add this right before the closing `</head>` tag.
     })(document, window);
 </script>
 ```
-
-You'll find your `SmocConversationTemplateId` inside [Smoc Console](https://console.smoc.ai/).
 
 ## Configuration
 
