@@ -25,6 +25,8 @@ We recommend you add this right before the closing `</head>` tag.
             color: '#9f51bc',
             shape: 'round', // or 'square'
             position: 'bottom-right' // or 'bottom-left'
+            borderRadius: '10px',
+            closeButtonColor: '#fff',
         }
         var s = d.createElement('script');
         s.async = true;
